@@ -1,4 +1,4 @@
-const { getAllNotes, addNote, getNoteById, deleteNoteById } = require('../services/notes-service')
+const { getAllNotes, addNote, getNoteById, updateNoteById, deleteNoteById } = require('../services/notes-service')
 const { sendResponse } = require('../utils/response-util')
 
 const fetchNotes = async (req, res, next) => {
@@ -19,4 +19,22 @@ const createNote = async (req, res, next) => {
     }
 }
 
-module.exports = { fetchNotes, createNote }
+const fetchNote = async (req, res, next) => {
+    try {
+        const note = await getNoteById(req.params.id)
+        sendResponse(res, 201, note)
+    }catch(err){
+        next(err)
+    }
+}
+
+const updateNote = async (req, res, next) => {
+    try {
+        const note = await updateNoteById(req.params.id, req.body)
+        sendResponse(res, 201, note)
+    }catch(err){
+        next(err)
+    }
+ 
+}
+module.exports = { fetchNotes, createNote, fetchNote, updateNote  }
