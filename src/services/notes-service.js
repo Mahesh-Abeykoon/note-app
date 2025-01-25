@@ -35,7 +35,7 @@ const updateNoteById = async (id, data) => {
 /** 
  * Delete a note by ID
 */
-const deleteNoteById = async () => {
+const deleteNoteById = async (id) => {
     return await prisma.note.delete({ where: { id: Number(id) } })
 }
 
