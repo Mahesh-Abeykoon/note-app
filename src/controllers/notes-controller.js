@@ -35,6 +35,16 @@ const updateNote = async (req, res, next) => {
     }catch(err){
         next(err)
     }
- 
 }
-module.exports = { fetchNotes, createNote, fetchNote, updateNote  }
+
+const removeNote  = async (req, res, next) => {
+    try {
+        await deleteNoteById((req.params.id))
+        sendResponse(res, 201, { message: 'Note deleted successfully'})
+    } catch(err) {
+        next(err)
+    }
+}
+   
+
+module.exports = { fetchNotes, createNote, fetchNote, updateNote, removeNote   }
