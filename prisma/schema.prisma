@@ -11,6 +11,7 @@ model Note {
   id      Int   @id @default(autoincrement())
   title   String
   content String
+  test   String  @default("TEST")
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 }
